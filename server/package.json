@@ -1,0 +1,12 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "routes/index.js",
+  "license": "MIT",
+  "scripts": {
+      "start": "node routes/index.js"
+  }
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
