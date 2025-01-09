@@ -1,5 +1,5 @@
 import express from "express";
-import { criarUser } from "../services/users";
+import { criarUser, deleteUser, getUserData } from "../services/users";
 const app = express();
 const port = 4000;
 
@@ -8,7 +8,28 @@ app.use(express.json());
 app.post("/criarUser", (req, res) => {
     const body = req.body;
     const id = criarUser(body);
+
+    if (id === "error") {
+        res.status(400).json({ message: id });
+    }
     res.status(200).json({ message: "utilizador criado com sucesso", id: id });
+});
+
+app.get("/user/:id", (req, res) => {
+    const id = req.params.id;
+    const data = getUserData(Number(id));
+
+    if (data === undefined) {
+        res.status(404).json({ message: "page not found" });
+    }
+
+    res.status(200).json(data);
+});
+
+app.delete("/user/:id", (req, res) => {
+    const id = req.params.id;
+    deleteUser(Number(id));
+    res.status(200).json({ message: "sad" });
 });
 
 app.listen(port, () => {
