@@ -21,13 +21,13 @@
 ### jogo
 
     {
-    	id:num
+    	id:string
     	titulo:string
     	descricao:string
     	preco:num
     	genero:string
     	stock:num
-    	emStock:string
+    	emStock:bool
     }
 
 ## notas:

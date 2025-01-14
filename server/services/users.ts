@@ -1,16 +1,10 @@
-import { GiveUserData, InsertUser, PopUser } from "../data/users";
+import { EditarUser, GiveUserData, InsertUser, PopUser } from "../data/users";
 import moment from "moment";
+import { CriarUserInterface, EditavelInterface } from "../interfaces";
 
 moment.locale("pt");
 
-interface ReqBody {
-    username: string;
-    email: string;
-    password: string;
-    nome: string;
-}
-
-export function criarUser(body: ReqBody) {
+export function criarUser(body: CriarUserInterface) {
     const user = {
         id: null,
         username: body.username,
@@ -25,10 +19,14 @@ export function criarUser(body: ReqBody) {
     return id;
 }
 
-export function getUserData(id: Number) {
+export function getUserData(id: number) {
     return GiveUserData(id);
 }
 
-export function deleteUser(id: Number) {
-    PopUser(id)
+export function deleteUser(id: number) {
+    PopUser(id);
+}
+
+export function editUser(id: number, body: EditavelInterface) {
+    EditarUser(id, body);
 }
